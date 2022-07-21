@@ -1,0 +1,41 @@
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <div id="desafio03">
+        <!-- 1) Exibir em "resultado" o texto "valor Diferente" enquanto
+    "valor" for diferente de 37.
+    Mostrar 'Valor Igual' quando "valor" for igual a 37 -->
+
+        <!-- 2) Monitorar as mudanças de "resultado" e reiniciar "valor"
+        para 0 depois de 5 segundos (dica: setTimeout(..., 5000)) -->
+        <div>
+            <p>Valor atual: {{ valor }}</p>
+            <button @click="valor += 5">Somar 5</button>
+            <button @click="valor += 1">Somar 1</button>
+            <p>{{ resultado }}</p>
+        </div>
+    </div>
+    <script>
+        new Vue({
+        el:"#desafio03",
+        data: {
+            valor: 0,
+            
+            
+        },
+        computed: {
+            resultado() {
+                return this.valor == 37 ? 
+                "valor Igual" : "valor Diferente"
+
+            }
+        },
+       
+        watch: {
+            resultado(novo, anterior) { 
+                console.log(novo, anterior);
+                setTimeout(()=>{this.valor = 0}, 5000 )
+            }
+        },
+      
+    })
+    </script>

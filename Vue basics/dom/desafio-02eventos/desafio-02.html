@@ -1,0 +1,37 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<div id="desafio02">
+    <!-- 1) Exiba um alert quando o botão for clicado-->
+    <div>
+        <button v-on:click="exibirAlerta">Exibir Alerta</button>
+    </div>
+
+    <!-- 2) Escute o evento "keydown" e ermazene "valor" na propriedade data (dica: event.target.value) -->
+    <div>
+        <input v-on:Keydown="dadoInput" type="text"> <!-- v-model="valor" Utilizando two-way-data-binding -->
+        <p>{{valor}}</p>
+    </div>
+
+    <!-- 3) Ajuste o exemplo 2 para disparar o evento "keydonw" somente quando a tecla for ENTER -->
+    <div>
+        <input v-on:Keydown.enter="dadoInput" type="text">
+        <p>{{valor}}</p>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#desafio02',
+        data: {
+            valor: "",
+        },
+        methods: {
+            exibirAlerta() {
+                alert('clique')
+            },
+            dadoInput(){
+                //console.log(event)
+                this.valor = event.target.value
+            }
+        }
+
+    })
+</script>

@@ -1,0 +1,307 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap');
+
+    body {
+        font-family: Rubik;
+        background-image: url('https://www.teahub.io/photos/full/313-3132029_linkedin-wallpaper-wallpapersafari-background-image-for-form-in.jpg') ;
+        
+        
+    }
+    h1 {
+        text-align: center;
+        margin-top: 60px;
+        letter-spacing: 0.5px;
+        color: snow;  
+    }
+    .dm {
+        position: relative;
+        float: right;
+        right: 200px;
+        bottom: 74px;
+        font-size: larger;
+        color: snow;
+    }
+    .dark {
+        color: #282A36;
+    }
+    .form {     
+        background: rgb(227, 234, 244);
+        border-radius: 10px;
+        width: 1000px;
+        height: 700px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+        margin: auto;
+        text-align: center;
+    }
+    label {
+        font-size: 16px;
+    }
+    
+    .formDark {
+        background: #282A36;
+    }
+    /* checkbox */
+    .switch {
+        height: 34px;
+        position: relative;
+        width: 60px;
+        float: right;
+        right: 40px;
+        bottom: 60px;
+    }
+
+    .switch input {
+        display:none;
+    }
+
+    .slider {
+        background-color: #ccc;
+        bottom: 0;
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: .4s;
+    }
+
+    .slider:before {
+        background-color: #fff;
+        bottom: 4px;
+        content: "";
+        height: 26px;
+        left: 4px;
+        position: absolute;
+        transition: .4s;
+        width: 26px;
+    }
+
+    input:checked + .slider {
+        background-color: #66bb6a;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    /* checkbox */
+
+
+    .name {
+        
+        height: 150px;
+        width: 700px;
+        text-align: center;
+        position: relative;
+        left: 150;
+        top: 60px;   
+    }
+    /* redio */
+    
+    select {
+        border-radius: 5px;
+        border: solid #20537d 2px;
+        
+    }
+    input {
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+        height: 30px;
+        border: none;
+    }
+    .formDark .inputDark {
+        background-color: #40444B;
+    }
+    .input01 {
+        border: solid rgb(247, 115, 115);
+    }
+    
+    .btn {
+        border-radius: 3px;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        background-color:#20537d;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+        height: 40px;
+        width: 100px;
+        font-size: 20px;
+        color: white;
+        border: none;
+        position: relative;
+        left: 2px; 
+        top: 200px;
+    }
+    
+    
+    .end1 {
+        width: 200px;
+        height: 140px;
+        text-align: left;
+        float: left;
+        position: relative;
+        left: 240px;
+    }   
+    .end2 {
+        width: 200px;
+        height: 140px;
+        text-align: left;
+        float:right;
+        position: relative;
+        left: -220px;
+    }
+    .formDark .labelDark {
+        color: #DCD3C9;
+    }
+    
+</style>
+<body>
+    
+
+<div id="app">
+    <h1 :class="{'dark' : darkMode}">Preencha com seus dados:</h1>
+
+    <p class="dm" :class="{'dark' : darkMode}">Dark Mode</p>
+
+    <label class="switch" for="checkbox">
+        <input type="checkbox" id="checkbox" v-model="darkMode">
+        <div class="slider round"></div>
+    </label>
+    
+    <div class="form" :class="{'formDark' : darkMode}">
+        <div class="name">
+            <label :class="{'labelDark' : darkMode}"> Nome </label><input class="inputDark" type="text" v-model="nome" placeholder="Digite seu nome" required>
+            <label :class="{'labelDark' : darkMode}"> Sobrenome </label><input type="text" v-model="sobrenome" placeholder="Digite seu sobrenome" required><br><br>
+            <label :class="{'labelDark' : darkMode}"> Email </label><input type="email" placeholder="Digite seu email" required>
+        </div>
+        
+
+
+        <div class="radio">
+            <input id="radio-1" name="radio" type="radio">
+            <label for="radio-1" class="radio-label">Masculino</label>
+          </div>
+        
+          <div class="radio">
+            <input id="radio-2" name="radio" type="radio">
+            <label  for="radio-2" class="radio-label">Feminino</label>
+          </div>
+        
+          <div class="radio">
+            <input id="radio-3" name="radio" type="radio" >
+            <label for="radio-3" class="radio-label">Outro</label>
+          </div>
+
+
+        <br>
+        <br>
+        <p class="labelDark">Data de Nascimento:</p>
+            <label :class="{'labelDark' : darkMode}"> Dia </label>
+            <select name="dia" id="dia" >
+                <option v-for="valor in dia">{{valor}}</option>
+            </select>
+            &nbsp;
+            <label :class="{'labelDark' : darkMode}"> Mes </label>
+            <select name="mes" id="mes" @blur="years">
+                <option v-for="valor in mes">{{valor}}</option>
+            </select>
+            &nbsp;
+            <label :class="{'labelDark' : darkMode}"> Ano </label>
+            <select name="Ano" id="ano">
+                <option v-for="valor in anos">{{valor}}</option>
+            </select>
+            
+            <p :class="{'labelDark' : darkMode}">Endereço</p>
+            <div class="end1">
+                <label :class="{'labelDark' : darkMode}">CEP</label>
+                <input type="text" @blur="verificaEndereco" 
+                    v-model="cep" placeholder="cep" :class="{'input01' : !cepSuccess}"><br><br>
+                
+                <label :class="{'labelDark' : darkMode}"> Rua </label>
+                <input type="text" v-model="address.logradouro"
+                    placeholder="rua" :class="{'input01' : !cepSuccess}"><br><br>
+            
+                <label :class="{'labelDark' : darkMode}"> Bairro </label>
+                <input type="text" v-model="address.bairro" 
+                    placeholder="bairro" :class="{'input01' : !cepSuccess}">
+            </div>
+            <div class="end2">
+                <label> Cidade </label>
+                <input type="text" v-model="address.localidade" 
+                    placeholder="cidade" :class="{'input01' : !cepSuccess}"><br><br>
+            
+            
+                <label> Estado </label>
+                <input type="text" v-model="address.uf" 
+                    placeholder="estado" :class="{'input01' : !cepSuccess}"><br><br>
+            
+            
+                <label> Complemento </label>
+                <input type="text" 
+                    placeholder="num, bloco, apto..." :class="{'input01' : !cepSuccess}">
+            </div>
+            <button class="btn" @click.prevent="alerta"> Enviar </button>
+                 
+    </div>
+    
+</div>
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nome: "",
+            sobrenome: "",
+            dia: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+            mes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            anos: [],
+            cep: "",
+            address: {
+                
+            },
+            cepSuccess: true,
+            darkMode: false,
+        },
+        methods: {
+            alerta(){
+                alert(`Seus dados foram enviados com sucesso ${this.nome} ${this.sobrenome}`)
+            },
+
+            verificaEndereco() {
+                this.cepSuccess = null
+                fetch(`https://viacep.com.br/ws/${this.cep}/json`)
+                .then(response => response.json())
+                .then(endereco=> {
+                        
+                    this.address = endereco
+                    this.cepSuccess = true
+                        console.log(endereco)
+                        console.log(this.cepSuccess);
+                        
+                }).catch(function(error) {
+                    this.cepSuccess = false 
+                        console.log(this.cepSuccess);
+                });
+            },
+            years(firstYear, lastYear) {
+                for (var i = firstYear; i< lastYear; i++){
+                    this.anos.push(i)
+                }
+                console.log(this.anos);
+            },
+        },
+        // mounted: function () {
+        //     this.years(1899, 2004)
+        // }
+    })
+</script>

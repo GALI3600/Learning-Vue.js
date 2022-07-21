@@ -1,0 +1,67 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<style>
+    .caixas{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo{
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+    }
+
+    .cor-1{
+        background-color: red;
+    }
+
+    .cor-2{
+        background-color: green;
+    }
+
+    .cor-3{
+        background-color: blue;
+    }
+    .girar{
+        transform: rotate(45deg);
+    }
+</style>
+
+<div id="app">
+    <br>
+    <div class="caixas">
+
+        <div class="demo" :class="estilo1"
+            @click="aplicarC1 = !aplicarC1"
+        >
+    </div>
+
+        <div class="demo"></div>
+
+
+        <div class="demo" :class="[classeCSS, {'girar': aplicarGirar}]"></div>
+    </div>
+<br>
+<hr>
+<input type="text" v-model="classeCSS">
+<input type="checkbox" v-model="aplicarGirar">
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            aplicarC1: false,
+            classeCSS: 'cor-1',
+            aplicarGirar: false
+        },
+        computed: {
+            estilo1() {
+                return {
+                    'cor-1': this.aplicarC1,
+                    'cor-2': !this.aplicarC1
+                }
+            }
+        }
+    })
+</script>

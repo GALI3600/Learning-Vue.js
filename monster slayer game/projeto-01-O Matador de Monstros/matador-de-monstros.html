@@ -1,0 +1,406 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+
+<style>
+    @import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+    @import url();
+    body {
+        background-image: url('https://cdn.wallpapersafari.com/41/30/KhfVCl.png');
+        /* no repeat */
+        font-family: 'Press Start 2P';
+        letter-spacing: -2px;
+        height: 100%;
+    }
+    h1 {
+        font-size: 50px;
+        width: 400px;
+        text-align: center;
+        margin: auto;
+    }
+    p {
+        font-size: 40px;
+    }
+    ul {
+        list-style: none;
+    }
+    .battle {
+        width: 1600px;
+        height: 200px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+        margin: auto;
+        background-color: transparent;
+        position: relative;
+        top: 20px;
+    }
+    .player {
+        width: 600px;
+        height: 160px;
+        text-align: center;
+        font-size: 20px;
+        float: left;
+    }
+    .playerBar {
+        height: 30px;
+        width: 500px;
+        border: 1px solid black;
+        position: relative;
+        left: 45px;
+    }
+    .playerLife {
+        height: 100%;
+    }
+    .monster {
+        width: 600px;
+        height: 160px;
+        text-align: center;
+        font-size: 20px;
+        float: right;
+    }
+    .monsterBar {
+        height: 30px;
+        width: 500px;
+        border: 1px solid black;
+        position: relative;
+        left: 45px;
+    }
+    .monsterLife {
+        height: 100%;
+    }
+    .newGamebtn {
+        background-color: rgb(116, 116, 212);
+        width: 300px;
+        height: 50px;
+        font-size: 30px;
+        font-family: 'Press Start 2P';
+        letter-spacing: -1px;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+        position: relative;
+        top: 80px;
+        left: 780px;
+    }
+    .playAgainbtn {
+        background-color: rgb(116, 116, 212);
+        width: 300px;
+        height: 80px;
+        font-size: 30px;
+        font-family: 'Press Start 2P';
+        letter-spacing: -1px;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+        position: relative;
+        top: 80px;
+        left: 780px;
+    }
+    .options {
+        position: relative;
+        top: 80px;
+        left: 400px;
+        width: 1050px;
+    }
+    .atkbtn  {
+        background-color: rgb(206, 102, 46);
+        width: 250px;
+        height: 40px;
+        font-size: 25px;
+        font-family: 'Press Start 2P';
+        letter-spacing: -1px;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    }
+    .spcbtn {
+        background-color: yellow;
+        width: 250px;
+        height: 40px;
+        font-size: 25px;
+        font-family: 'Press Start 2P';
+        letter-spacing: -1px;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    }
+    .healbtn {
+        background-color: green;
+        width: 250px;
+        height: 40px;
+        font-size: 25px;
+        font-family: 'Press Start 2P';
+        letter-spacing: -1px;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    }
+    .giveupbtn {
+        background-color: red;
+        width: 250px;
+        height: 40px;
+        font-size: 25px;
+        font-family: 'Press Start 2P';
+        letter-spacing: -1px;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    }
+    .messages {
+        width: 400px;
+        position: relative;
+        margin: auto;
+        top: 60px;
+        text-align: center;
+        
+    }
+    .list {
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+        height: 500px;
+        align-content: end;
+    }
+    .log {
+        max-width: 100%;
+        width: 500px;
+        height: 30px;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 2px 0;
+        text-align: center;
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        line-height: 30px;
+    }
+    .monsterLog {
+        background: rgb(136, 32, 32);
+        
+    }
+    .playerLog {
+        background: rgb(57, 57, 191);
+    }
+    .m{
+        transform: scaleX(-1);
+        position: absolute;
+        float: right;
+        right: 250px;
+        top: 540px;
+    }
+    .p {
+        position: absolute;
+        float: left;
+        left: 250px;
+        width: 220px;
+        top: 540px;
+    }
+
+
+    
+</style>
+
+<div id="app">
+    <head>
+        <title>Monster Slayer</title>
+    </head>
+<body>
+    <header>
+        <h1>Monster Slayer</h1>
+    </header>
+    <div class="battle">
+        <div class="player">
+            <p>PLAYER</p>
+            <div class="playerBar">
+                <div class="playerLife" :style="[{'width':playerLife}, {'background-color': playerStatus}]"></div>
+            </div>
+            <br>
+            {{playerLife/5}}%
+        </div>
+        <div class="monster">
+            <p>MONSTER</p>
+            <div class="monsterBar">
+                <div class="monsterLife" :style="[{'width':monsterLife},{'background-color': monsterStatus}]"></div>
+            </div>
+            <br>
+            {{monsterLife/5}}%
+        </div>
+    </div>
+    <div v-if="!play">
+        <button class="newGamebtn" @click="newGame">New Game</button> 
+    </div>
+    <div class="options" v-if="play && !playAgain">
+        <button class="atkbtn" @click="attack">ATTACK</button>
+        <button class="spcbtn" @click="skill">SKILL</button>
+        <button class="healbtn" @click="heal" :disabled="healUses">HEAL</button>
+        <button class="giveUpbtn" @click="giveUp">GIVE UP</button>
+    </div>
+    <div class="messages">
+        <p v-if="giveupMessage">Good Lucky Next Time</p>
+        <p v-else-if="winMessage">You Won</p>
+        <p v-else-if="loseMessage">GAME OVER You Lose</p>
+    </div>
+    <div v-if="playAgain">
+        <button class="playAgainbtn" @click="pAgain">Play Again</button>
+    </div>
+
+    <div>
+        <ul class="list">
+            <li class="log" v-for="(value, i) in logs" :class="(i%2==0)?'playerLog':'monsterLog'">{{value}}</li>
+        </ul>
+    </div>
+    <div>
+        <img class="m" src="assets/monster.png">
+        <img class="p" src="assets/player.png">
+    </div>
+</body>
+
+</div>
+
+<script>
+
+new Vue({
+    el: '#app',
+    data: {
+        playerLife: 500,
+        monsterLife: 500,
+        playerStatus: 'green',
+        monsterStatus: 'green',
+        play: false,
+        giveupMessage: false,
+        winMessage: false,
+        loseMessage: false,
+        playAgain: false,
+        logs: [],
+        Heal: 0
+    },
+    methods: {
+        newGame() {
+            this.play = true
+            this.giveupMessage = false
+        },
+        attack() {
+            let playerDamage = 0
+            let monsterDamage = 0
+            playerDamage = Math.floor(Math.random() * (7 - 4) + 4)
+            this.monsterLife /= 5
+            this.monsterLife -= playerDamage
+            this.monsterLife *= 5
+
+                this.monsterStatus = this.monsterLife < 100 ? "red" : "green" //change monster life bar color to red when monster has low life
+                this.monsterLife <= 0 ? this.win() : this.monsterLife 
+    
+                
+            
+            monsterDamage = Math.floor(Math.random() * (10 + 7) + 7)
+        
+            this.playerLife /= 5
+            this.playerLife -= monsterDamage
+            this.playerLife *= 5
+
+            this.logs.unshift(`Monster hits Player with ${monsterDamage}%`)
+            this.logs.unshift(`Player hits Monster with ${playerDamage}%`)
+            
+
+                this.playerStatus = this.playerLife < 100 ? "red" : "green" //change player life bar color to red when player has low life
+                this.playerLife <= 0 ? this.lose() : this.playerLife
+                
+            },
+            
+        skill() {
+            let playerDamage = 0
+            let monsterDamage = 0
+            playerDamage = Math.floor(Math.random() * (10 + 7) + 7)
+                
+            this.monsterLife /= 5
+            this.monsterLife -= playerDamage
+            this.monsterLife *= 5
+
+                this.monsterStatus = this.monsterLife < 100 ? "red" : "green" //change monster life bar color to red when monster has low life
+                this.monsterLife <= 0 ? this.win() : this.monsterLife
+                
+
+            
+            monsterDamage = Math.floor(Math.random() * (6 + 4) + 4)
+                
+            this.playerLife /= 5
+            this.playerLife -= monsterDamage
+            this.playerLife *= 5
+
+            this.logs.unshift(`Monster hits Player with ${monsterDamage}%`)
+            this.logs.unshift(`Player attack Monster with ${playerDamage}%`)
+
+                this.playerStatus = this.playerLife < 100 ? "red" : "green" //change player life bar color to red when player has low life
+                this.playerLife <= 0 ? this.lose() : this.playerLife
+                 
+        },
+
+        heal() {
+            let playerHeal = 0
+            let monsterDamage = 0
+            if(this.playerLife < 500){
+                playerHeal = Math.floor(Math.random() * (10 + 7) + 7)
+                    
+                this.playerLife /= 5
+                this.playerLife += playerHeal
+                this.playerLife *= 5
+                    
+                
+                monsterDamage = Math.floor(Math.random() * (8 + 5) + 5)
+                    
+                this.playerLife /= 5
+                this.playerLife -= monsterDamage
+                this.playerLife *= 5
+
+                this.logs.unshift(`Monster hits Player with ${monsterDamage}%`)
+                this.logs.unshift(`Player heal himself with ${playerHeal}%`)
+                
+                    
+                    this.playerLife = this.playerLife >= 500 ? 500 : this.playerLife
+                    this.playerStatus = this.playerLife < 100 ? "red" : "green"
+                
+                    this.Heal++
+            }
+            
+        },
+
+        giveUp() {
+            this.play = true
+            this.playerLife = 500
+            this.monsterLife = 500
+            this.playerStatus = 'green'
+            this.monsterStatus = 'green'
+            this.giveupMessage = true
+            this.playAgain = true
+            this.playerLife = 0
+            
+                
+        },
+        pAgain () {
+            this.playerLife = 500
+            this.monsterLife = 500
+            this.playerStatus = 'green'
+            this.monsterStatus = 'green'
+            this.playAgain = false
+            this.winMessage = false
+            this.loseMessage = false
+            this.giveupMessage = false
+            this.logs = []
+            this.Heal = 0
+        },
+        win() {
+            this.monsterLife = 0
+            this.winMessage = true
+            this.playAgain = true
+        },
+
+        lose (){
+            this.playerLife = 0
+            this.loseMessage = true
+            this.playAgain = true
+        }
+
+    },
+    computed: {
+        healUses() {
+            if(this.Heal >= 3){
+                 return true
+            }
+        }
+    }
+})
+</script>

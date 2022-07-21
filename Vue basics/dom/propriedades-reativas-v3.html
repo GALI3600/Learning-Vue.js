@@ -1,0 +1,46 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <!-- button[v-on:click="aumentar"] -->
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contador2++">Aumentar 2</button>
+    <button v-on:click="diminuir">Diminuir</button>
+    <p>Contador: {{contador}} | {{contador2}}</p>
+    <p>Resultado: {{resultado}}</p>
+</div>
+
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            contador2: 0,
+            //resultado: "",
+        },
+        computed: {
+            resultado() {
+                return this.contador >= 5 ?
+                    "Maior ou igual a 5" : "Menor que 5"
+            }
+        },
+        watch: {                                    //o objeto watch serve para monitorar mudanças em variáveis.
+            contador(novo, antigo) {
+                console.log(novo, antigo)
+                                                    //seria utilizado: const instanciaVue = this caso não fosse utilizada uma arrow function.
+                setTimeout(() => {                  //é utilizada uma arrow function pois assim o this. aponta para a instância do vue.
+                    this.contador = 0
+                }, 2000)
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador ++
+            },
+            diminuir() {
+                this.contador --
+            },
+            
+        }
+    })
+</script>
